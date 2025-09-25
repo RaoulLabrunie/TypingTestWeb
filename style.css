@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', Monaco, monospace;
+  background-color: #323437;
+  color: #d1d0c5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+header {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  color: #e2b714;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+main {
+  max-width: 800px;
+  width: 90%;
+  text-align: center;
+  padding: 1rem;
+}
+
+#timer {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 3rem;
+  color: #e2b714;
+}
+
+#output {
+  font-size: 1.5rem;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #2c2e31;
+  border: 2px solid #646669;
+  text-align: left;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Estados de las letras */
+.correcto {
+  color: #e2b714;
+  background-color: transparent;
+}
+
+.incorrecto {
+  color: #ca4754;
+  background-color: rgba(202, 71, 84, 0.2);
+}
+
+.pendiente {
+  color: #646669;
+  background-color: transparent;
+}
+
+.actual {
+  background-color: #d1d0c5;
+  color: #323437;
+  animation: blink 1.2s infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Scrollbar personalizado */
+#output::-webkit-scrollbar {
+  width: 8px;
+}
+
+#output::-webkit-scrollbar-track {
+  background: #2c2e31;
+}
+
+#output::-webkit-scrollbar-thumb {
+  background: #646669;
+  border-radius: 4px;
+}
+
+#output::-webkit-scrollbar-thumb:hover {
+  background: #d1d0c5;
+}
+
+/* Botón Reiniciar */
+button {
+  background-color: #2c2e31;
+  color: #d1d0c5;
+  border: 2px solid #646669;
+  border-radius: 10px;
+  padding: 0.8rem 2rem;
+  font-family: 'Courier New', Monaco, monospace;
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  outline: none;
+}
+
+button:hover {
+  background-color: #e2b714;
+  color: #323437;
+  border-color: #e2b714;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(226, 183, 20, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(226, 183, 20, 0.2);
+}
+
+button:focus {
+  border-color: #e2b714;
+  box-shadow: 0 0 0 3px rgba(226, 183, 20, 0.2);
+}
+
+/* Estado cuando el botón está oculto */
+button[hidden] {
+  display: none;
+}
