@@ -14,7 +14,9 @@ let inicio = 0;
 
 //cargamos el texto que se va a mostrar
 async function main() {
-  await obternerTexto();
+  let language = await obtenerIdioma();
+
+  await obternerTexto(language);
 
   output.innerHTML = texto
     .split("")
@@ -69,7 +71,6 @@ document.addEventListener("keypress", (event) => {
       let tiempo = Date.now() - inicio;
       tiempo = tiempo / 1000;
       palabrasMinuto = (40 / tiempo) * 60;
-      output.innerHTML = `<p>Tiempo: ${tiempo.toFixed(2)}s</p>`;
       output.innerHTML += `<p>WPM: ${palabrasMinuto.toFixed(2)}</p>`;
       output.innerHTML += `<p>Aciertos: ${porcentaje.toFixed(2)}%</p>`;
       bReiniciar.hidden = false;
@@ -95,13 +96,18 @@ function eliminarLetra(letras) {
   letras[posicion].classList.remove("incorrecto", "correcto");
 }
 
-async function obternerTexto() {
-  const palabras = await fetch("palabras.json").then((res) => res.json());
+async function obternerTexto(idioma) {
+  const archivo = "resources/" + idioma + ".json";
+
+  console.log(archivo);
+
+  const palabras = await fetch(archivo).then((res) => res.json());
+
   texto = "";
 
   for (let i = 0; i < 40; i++) {
-    aleatorio = Math.floor(Math.random() * palabras.español.length);
-    texto += palabras.español[aleatorio] + " ";
+    aleatorio = Math.floor(Math.random() * palabras.length);
+    texto += palabras[aleatorio] + " ";
   }
   texto = texto.trim();
 }
@@ -137,6 +143,28 @@ async function reiniciar() {
 
   // Opcional: Enfocar el área de escritura para mejor UX
   output.focus();
+}
+
+async function obtenerIdioma() {
+  let idioma = navigator.language.substring(0, 2); // "es", "en", "fr"
+
+  console.log(idioma);
+
+  switch (idioma) {
+    case "es":
+      idioma = "espanol";
+      break;
+    case "en":
+      idioma = "ingles";
+      break;
+    case "fr":
+      idioma = "frances";
+      break;
+    default:
+      idioma = "ingles";
+      break;
+  }
+  return idioma;
 }
 
 main();
