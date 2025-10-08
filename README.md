@@ -22,12 +22,13 @@
    cd TypingTestWeb
    ```
 
-2. **Add word database** (`palabras.json`):
+2. **Add word database** (`"language".json` for each language)
+
+   - Example: `"resources/espanol.json"`
+   - Format:
 
    ```json
-   {
-     "español": ["palabra", "ejemplo", "texto", "prueba"]
-   }
+   ["palabra", "ejemplo", "texto", "prueba"]
    ```
 
 3. **Open `index.html`** in your browser
@@ -46,7 +47,8 @@ TypingTestWeb/
 ├── index.html     # Main page
 ├── style.css      # Styling
 ├── script.js      # Core logic
-└── palabras.json  # Spanish words
+└── resources/     # Where your language database is stored
+    └── words.json
 ```
 
 ## ⚙️ Customization
